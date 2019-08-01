@@ -3,21 +3,16 @@ import changeVideoList from './videoList.js';
 import changeVideo from './currentVideo.js';
 import YOUTUBE_API_KEY from '../config/youtube.js';
 
-
 var handleVideoSearch = (q) => {
-
-  //TODO:  Write an asynchronous action to handle a video search!
   var object = {YOUTUBE_API_KEY, q}
-  // var results = searchYouTube(object, (videos) => (changeVideoList(videos)))
-  // var result = searchYouTube(object, (video) => (changeVideo(video)))
-
-  // const mapDispatchToProps = dispatch => {
-  //   return {
-  //     changeVideoList: (results) => dispatch({ type: "CHANGE_VIDEO_LIST"}),
-  //     changeVideo: (result) => dispatch({type: 'CHANGE_VIDEO'})
-  //   }
-  // }
-  // searchYouTube(object, cb) --> returns an array of item; assign it to changeVideoList & videos,
+  return (dispatch) => {
+    searchYouTube(object, (videos) => {
+      dispatch(changeVideoList(videos));
+      dispatch(changeVideo(videos[0]))
+    })
+  //TODO:  Write an asynchronous action to handle a video search!
+  }
+//thunk is a function the returns a function
 };
 
 export default handleVideoSearch;

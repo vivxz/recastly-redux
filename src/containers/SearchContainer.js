@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import Search from './../components/Search.js';
 import handleSearchChange from '../actions/search.js';
 import store from '../store/store.js';
+import handleVideoSearch from '../actions/search.js';
 
 var SearchContainer = () => {
   /*
@@ -14,12 +15,17 @@ var SearchContainer = () => {
 // dispatchers with your search component props.
 //HINT: use react-redux 'connect' method to generate a container component from
 //state and dispatch mappings.
-const mapStateToProps = state => ({
-})
+const mapStateToProps = (state, props) => {
+   return {
+    value: state.value
+   }
+};
 
-const mapDispatchToProps = dispatch => ({
-  handleVideoSearch: id => dispatch(handleVideoSearch(id))
-})
+const mapDispatchToProps = (dispatch) => { //
+  return {
+    handleSearchInputChange: (e) => (dispatch())
+  }
+}
 
 export default connect(
   mapStateToProps,
